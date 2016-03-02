@@ -1,0 +1,19 @@
+server {
+
+        server_name 10.90.90.91;
+        listen 80;
+        client_max_body_size 75M;
+        charset     utf-8;
+
+        location / { try_files $uri @[application]; }
+        location @[application] {
+                uwsgi_pass 10.90.90.95:4242;
+                include uwsgi_params;
+        }
+
+        location /imgs {
+        alias /vagrant/static/;
+
+    }
+
+}

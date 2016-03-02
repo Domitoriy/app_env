@@ -1,0 +1,8 @@
+---
+- hosts: rtnx
+  sudo: yes
+  tasks:
+  - name: install nginx
+    apt: name=nginx state=present
+  - script: nginxconf.sh
+  - script: iprulesnx.sh

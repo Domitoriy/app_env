@@ -1,0 +1,10 @@
+#!/sbin/iptables-restore
+*filter
+:INPUT DROP [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -i eth0 -j ACCEPT
+-A INPUT -p tcp --dport 80 -i eth1 -j ACCEPT
+COMMIT
